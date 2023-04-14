@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "67348814121",
+    "project_id": "photo-upload-with-bloc",
+    "storage_bucket": "photo-upload-with-bloc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:67348814121:android:396699a2b1e36775b17f38",
+        "android_client_info": {
+          "package_name": "com.example.bloc_state_management"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "67348814121-0vvpc9138fu19tikqp4i409at754jtv1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD92qnyN5gCPwAYG6NZtx99sUMz7UR-83I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "67348814121-0vvpc9138fu19tikqp4i409at754jtv1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "67348814121-sqb55b6onbtiq5fj167kpkr1r2fg41rq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.blocStateManagement"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
