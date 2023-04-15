@@ -1,4 +1,6 @@
 import 'package:bloc_state_management/firebase_options.dart';
+import 'package:bloc_state_management/views/app.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -7,37 +9,16 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await FirebaseAppCheck.instance.activate(
+    webRecaptchaSiteKey: 'recaptcha-v3-site-key',
+    // Default provider for Android is the Play Integrity provider. You can use the "AndroidProvider" enum to choose
+    // your preferred provider. Choose from:
+    // 1. debug provider
+    // 2. safety net provider
+    // 3. play integrity provider
+    androidProvider: AndroidProvider.debug,
+  );
   runApp(
     const App(),
   );
-}
-
-class App extends StatelessWidget {
-  const App({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'bloc_state_management',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      debugShowCheckedModeBanner: false,
-      home: const HomePage(),
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home Page'),
-        centerTitle: true,
-      ),
-    );
-  }
 }
