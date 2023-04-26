@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:bloc_state_management/bloc/app_bloc.dart';
 import 'package:bloc_state_management/bloc/app_event.dart';
 import 'package:bloc_state_management/dialogs/delete_account_dialog.dart';

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class LoadingScreen {
   LoadingScreen._sharedInstance();
-  static late final LoadingScreen _shared = LoadingScreen._sharedInstance();
+  static final LoadingScreen _shared = LoadingScreen._sharedInstance();
   factory LoadingScreen.instance() => _shared;
 
   LoadingScreenController? controller;
@@ -32,23 +32,26 @@ class LoadingScreen {
     required BuildContext context,
     required String text,
   }) {
-    final _text = StreamController<String>();
-    _text.add(text);
+    final stext = StreamController<String>();
+    stext.add(text);
 
     final state = Overlay.of(context);
-    final renderBox = context.findRenderObject() as RenderBox;
-    final size = renderBox.size;
 
     final overlay = OverlayEntry(
       builder: (context) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          final renderBox = context.findRenderObject() as RenderBox;
+          final size = renderBox.size;
+          controller?.update(size.toString());
+        });
+
         return Material(
           color: Colors.black.withAlpha(150),
           child: Center(
             child: Container(
-              constraints: BoxConstraints(
-                maxWidth: size.width * 0.8,
-                maxHeight: size.height * 0.8,
-                minWidth: size.width * 0.5,
+              constraints: const BoxConstraints(
+                maxWidth: double.infinity,
+                maxHeight: double.infinity,
               ),
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -65,7 +68,7 @@ class LoadingScreen {
                       const CircularProgressIndicator(),
                       const SizedBox(height: 20),
                       StreamBuilder(
-                        stream: _text.stream,
+                        stream: stext.stream,
                         builder: (context, snapshot) {
                           if (snapshot.hasData) {
                             return Text(
@@ -87,16 +90,16 @@ class LoadingScreen {
       },
     );
 
-    state?.insert(overlay);
+    state.insert(overlay);
 
     return LoadingScreenController(
       close: () {
-        _text.close();
+        stext.close();
         overlay.remove();
         return true;
       },
       update: (text) {
-        _text.add(text);
+        stext.add(text);
         return true;
       },
     );

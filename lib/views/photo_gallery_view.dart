@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:bloc_state_management/bloc/app_bloc.dart';
 import 'package:bloc_state_management/bloc/app_event.dart';
 import 'package:bloc_state_management/bloc/app_state.dart';
@@ -45,11 +47,13 @@ class PhotoGalleryView extends HookWidget {
         padding: const EdgeInsets.all(8.0),
         mainAxisSpacing: 8.0,
         crossAxisSpacing: 8.0,
-        children: images.map(
-          (img) => StorageImageView(
-            image: img,
-          ),
-        ).toList(),
+        children: images
+            .map(
+              (img) => StorageImageView(
+                image: img,
+              ),
+            )
+            .toList(),
       ),
     );
   }
